@@ -20,7 +20,7 @@ fi
 cd ~
 
 echo "Change pi default password..."
-sudo passwd
+sudo passwd pi
 
 wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
