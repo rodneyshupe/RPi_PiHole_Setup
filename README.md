@@ -10,7 +10,9 @@ Example instructions [here](https://github.com/rodneyshupe/RPi_PiHole_Setup/blob
 Boot raspberry pi and login via SSH and run base setup.
 
 ```
-wget https://raw.githubusercontent.com/rodneyshupe/RPi_PiHole_Setup/master/step1_setup.sh && chmod +x step1_setup.sh && sudo ./step1_setup.sh
+wget https://raw.githubusercontent.com/rodneyshupe/RPi_PiHole_Setup/master/step1_setup.sh
+chmod +x step1_setup.sh
+sudo ./step1_setup.sh [HostName [TimeZone]]
 ```
 Follow the prompts.
 

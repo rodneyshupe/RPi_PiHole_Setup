@@ -5,9 +5,9 @@
 # Changes keyboard to US Layout
 # Sets Timezone
 
-HOSTNAME="MilliwaysPiHole"
-NEWUSER="pihole"
-TMZ="America/Vancouver"
+PIHOLE_USER="pihole"
+HOSTNAME="${1:-PiHole}"
+TMZ="${2:-America/Vancouver}"
 LOCALE="en_US.UTF-8"
 
 #Check if script is being run as root
@@ -26,10 +26,10 @@ sudo passwd pi
 wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
 ## Add new user and lock Pi User
-rpi_clone_user ${NEWUSER}
+rpi_clone_user ${PIHOLE_USER}
 rpi_updates
 rpi_set_timezone "${TMZ}"
 rpi_set_keyboard "us"
 rpi_change_hostname "${HOSTNAME}"
 rpi_set_locale "${LOCALE}"
-rpi_set_autologin "$NEWUSER"
+rpi_set_autologin "$PIHOLE_USER"
