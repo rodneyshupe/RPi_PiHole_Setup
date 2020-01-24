@@ -28,8 +28,10 @@ wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.co
 ## Add new user and lock Pi User
 rpi_clone_user ${PIHOLE_USER}
 rpi_updates
+rpi_install_essentials
 rpi_set_timezone "${TMZ}"
 rpi_set_keyboard "us"
 rpi_change_hostname "${HOSTNAME}"
+rpi_install_login_notifications
 rpi_set_locale "${LOCALE}"
 rpi_set_autologin "$PIHOLE_USER"
