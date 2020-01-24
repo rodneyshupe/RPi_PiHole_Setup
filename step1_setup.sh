@@ -17,10 +17,11 @@ if [ "$(id -u)" != "0" ]; then
 fi
 
 # Configure Pi
-cd ~
-
 echo "Change pi default password..."
 sudo passwd pi
+
+# TODOs: Add MOTD Scripts
+# Setup ssh details.
 
 wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 

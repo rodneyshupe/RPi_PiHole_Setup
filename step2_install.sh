@@ -6,7 +6,9 @@ PIHOLE_INTERFACE=""
 PIHOLE_IP="192.168.1.2"
 GATEWAY_IP="192.168.1.1"
 TFT_DRIVER="MHS35"
-TFT_ROTATION="90"
+TFT_ROTATION="180"
+PIHOLE_USER="pihole"
+PIHOLE_DIR="/home/${PIHOLE_USER}"
 
 ## Config Ethernet
 
@@ -46,10 +48,11 @@ echo "Installing Pi-Hole..."
 curl -sSL https://install.pi-hole.net | bash
 
 # Install PADD - See details at https://github.com/jpmck/PADD
-cd ~
-wget -N https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh
-sudo chmod +x padd.sh
-cd ~
+cd ${PIHOLE_DIR}
+wget --output-document=~/padd.sh --quiet https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh
+sudo chmod +x ~/padd.sh
+
+cd ${PIHOLE_DIR}
 echo "
 if [ \"\$TERM\" == \"linux\" ]; then
   while :
@@ -64,12 +67,13 @@ fi" | tee ~/.bashrc -a
 
 echo "About to run screen config.  Select Terminus font at 8x14"
 echo "Follow these prompts and selections:"
-echo "   UTF-8 > Guess optimal character set > Fixed> 8x14"
-pause
+echo "   UTF-8 > Guess optimal character set > Terminus > 8x14"
+read -n 1 -s -r -p "Press any key to continue"
 sudo dpkg-reconfigure console-setup
 
 # Install TFT Driver - Note: This will cause a reboot so needs to be last.
 echo "Installing Driver..."
+cd ${PIHOLE_DIR}
 sudo rm -rf LCD-show
 git clone https://github.com/goodtft/LCD-show.git
 chmod -R 755 LCD-show
