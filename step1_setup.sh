@@ -22,7 +22,7 @@ cd ~
 echo "Change pi default password..."
 sudo passwd
 
-wget https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
+wget --output-file=rpi_functions.sh --quite https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
 ## Add new user and lock Pi User
 rpi_clone_user ${NEWUSER}
