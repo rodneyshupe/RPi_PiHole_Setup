@@ -48,9 +48,9 @@ echo "Installing Pi-Hole..."
 curl -sSL https://install.pi-hole.net | bash
 
 # Install PADD - See details at https://github.com/jpmck/PADD
-cd ${PIHOLE_DIR}
-wget --output-document=~/padd.sh --quiet https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh
-sudo chmod +x ~/padd.sh
+sudo wget --output-document=/usr/local/bin/padd --quiet \
+  https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh \
+  && sudo chmod +x /usr/local/bin/padd
 
 cd ${PIHOLE_DIR}
 echo "
@@ -58,11 +58,11 @@ if [ \"\$TERM\" == \"linux\" ]; then
   while :
   do
     sudo con2fbmap 1 0
-    ./padd.sh
+    /usr/local/bin/padd
     sleep 1
   done
 fi" | tee ~/.bashrc -a
-# To Update: cd ~ && wget -N https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh
+# To Update: wget  --output-document=/usr/local/bin/padd --quiet -N https://raw.githubusercontent.com/jpmck/PADD/master/padd.sh
 
 
 echo "About to run screen config.  Select Terminus font at 8x14"
