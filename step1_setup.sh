@@ -6,7 +6,7 @@
 # Sets Timezone
 
 HOSTNAME="MilliwaysPiHole"
-USERNAME="pihole"
+NEWUSER="pihole"
 TMZ="America/Vancouver"
 LOCALE="en_US.UTF-8"
 
@@ -22,7 +22,7 @@ cd ~
 echo "Change pi default password..."
 sudo passwd
 
-curl -sSL https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh | source
+wget https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
 ## Add new user and lock Pi User
 rpi_clone_user ${NEWUSER}
@@ -31,5 +31,4 @@ rpi_set_timezone "${TMZ}"
 rpi_set_keyboard "us"
 rpi_change_hostname "${HOSTNAME}"
 rpi_set_locale "${LOCALE}"
-
 rpi_set_autologin "$NEWUSER"
