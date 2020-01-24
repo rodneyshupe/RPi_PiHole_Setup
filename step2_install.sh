@@ -5,9 +5,12 @@
 PIHOLE_INTERFACE=""
 PIHOLE_IP="192.168.1.2"
 GATEWAY_IP="192.168.1.1"
+TFT_DRIVER_URL="https://github.com/goodtft/LCD-show.git"
 TFT_DRIVER="MHS35"
 TFT_ROTATION="180"
 PIHOLE_USER="pihole"
+
+
 PIHOLE_DIR="/home/${PIHOLE_USER}"
 
 ## Config Ethernet
@@ -75,7 +78,7 @@ sudo dpkg-reconfigure console-setup
 echo "Installing Driver..."
 cd ${PIHOLE_DIR}
 sudo rm -rf LCD-show
-git clone https://github.com/goodtft/LCD-show.git
+git clone ${TFT_DRIVER_URL}
 chmod -R 755 LCD-show
 cd LCD-show/
 sudo ./${TFT_DRIVER}-show $TFT_ROTATION
