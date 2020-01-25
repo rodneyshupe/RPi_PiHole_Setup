@@ -26,6 +26,7 @@ sudo passwd pi
 wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
 ## Add new user and lock Pi User
+rpi_enhance_prompt "/home/$PIHOLE_USER"
 rpi_clone_user ${PIHOLE_USER}
 rpi_updates
 rpi_install_essentials
