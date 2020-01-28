@@ -13,6 +13,9 @@ PIHOLE_USER="pihole"
 
 PIHOLE_DIR="/home/${PIHOLE_USER}"
 
+
+CURRENT_DIR="$PWD"
+
 ## Config Ethernet
 
 # Find out how many interfaces are available to choose from
@@ -49,6 +52,15 @@ fi
 # Install PiHole - See details at https://pi-hole.net/
 echo "Installing Pi-Hole..."
 curl -sSL https://install.pi-hole.net | bash
+
+# Add whitelisting
+cd /opt/
+sudo git clone https://github.com/anudeepND/whitelist.git
+cd whitelist/scripts
+sudo ./whitelist.sh
+cd "${CURRENT_DIR}"
+
+sudo crontab -l | { cat; echo "# Update white list at 1:00am 1st day of every week."; echo "0 1 * * */7 root /opt/whitelist/scripts/whitelist.sh"; } | sudo crontab -
 
 # Install PADD - See details at https://github.com/jpmck/PADD
 sudo wget --output-document=/usr/local/bin/padd --quiet \
