@@ -24,3 +24,7 @@ wget https://raw.githubusercontent.com/rodneyshupe/RPi_PiHole_Setup/master/step2
 chmod +x step2_install.sh
 sudo ./step2_install.sh
 ```
+
+## TODOs:
+* Unbound as a local recursive resolver.
+* DoH or Dot clients so your DNS traffic between the Pi and upstream server is encrypted
