@@ -20,14 +20,11 @@ fi
 echo "Change pi default password..."
 sudo passwd pi
 
-# TODOs: Add MOTD Scripts
-# Setup ssh details.
-
 wget --output-document=rpi_functions.sh --quiet https://raw.githubusercontent.com/rodneyshupe/RPi_Utilities/master/setup/rpi_functions.sh && source rpi_functions.sh
 
 ## Add new user and lock Pi User
-rpi_enhance_prompt "/home/$PIHOLE_USER"
 rpi_clone_user ${PIHOLE_USER}
+rpi_enhance_prompt "/home/$PIHOLE_USER"
 rpi_updates
 rpi_install_essentials
 rpi_set_timezone "${TMZ}"
@@ -36,3 +33,6 @@ rpi_change_hostname "${HOSTNAME}"
 rpi_install_login_notifications
 rpi_set_locale "${LOCALE}"
 rpi_set_autologin "$PIHOLE_USER"
+
+#TODO: Setup ssh details.
+#TODO: Add option for Admin user which will also disable pi user.
