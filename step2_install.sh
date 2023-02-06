@@ -19,7 +19,7 @@ CURRENT_DIR="$PWD"
 ## Config Ethernet
 
 # Find out how many interfaces are available to choose from
-availableInterfaces=$(ip --oneline link show up | grep -v "lo" | awk '{print $2}' | cut -d':' -f1 | cut -d'@' -f1)
+availableInterfaces="$(ip --oneline link show up | grep -v 'lo' | grep -v 'qdisc noqueue' | awk '{print $2}' | cut -d':' -f1 | cut -d'@' -f1)"
 interfaceCount=$(wc -l <<< "${availableInterfaces}")
 
 # If there is one interface,
@@ -28,7 +28,7 @@ if [[ "${interfaceCount}" -eq 1 ]]; then
   PIHOLE_INTERFACE="${availableInterfaces}"
 # Otherwise,
 else
-  PIHOLE_INTERFACE="eth0"
+  PIHOLE_INTERFACE="$(echo "${PIHOLE_INTERFACE}" | head -1)"
   printf "  Unable to determine which interface to use automatically so setting to %s \\n  You may need to adjust /etc/dhcpcd.conf after the install is complete.\\n" "${PIHOLE_INTERFACE}"
 fi
 
